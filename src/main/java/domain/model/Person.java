@@ -27,14 +27,14 @@ public class Person {
 
 	public void setUserid(String userid) {
 		if(userid.isEmpty()){
-			throw new IllegalArgumentException("No userid given");
+			throw new DomainException("No userid given");
 		}
 		this.userid = userid;
 	}
 
 	public void setEmail(String email) {
 		if(email.isEmpty()){
-			throw new IllegalArgumentException("No email given");
+			throw new DomainException("No email given");
 		}
 		String USERID_PATTERN = 
 				"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -42,7 +42,7 @@ public class Person {
 		Pattern p = Pattern.compile(USERID_PATTERN);
 		Matcher m = p.matcher(email);
 		if (!m.matches()) {
-			throw new IllegalArgumentException("Email not valid");
+			throw new DomainException("Email not valid");
 		}
 		this.email = email;
 	}
@@ -59,14 +59,14 @@ public class Person {
 	
 	public boolean isCorrectPassword(String password) {
 		if(password.isEmpty()){
-			throw new IllegalArgumentException("No password given");
+			throw new DomainException("No password given");
 		}
 		return getPassword().equals(password);
 	}
 
 	public void setPassword(String password) {
 		if(password.isEmpty()){
-			throw new IllegalArgumentException("No password given");
+			throw new DomainException("No password given");
 		}
 		this.password = password;
 	}
@@ -77,7 +77,7 @@ public class Person {
 
 	public void setFirstName(String firstName) {
 		if(firstName.isEmpty()){
-			throw new IllegalArgumentException("No firstname given");
+			throw new DomainException("No firstname given");
 		}
 		this.firstName = firstName;
 	}
@@ -88,7 +88,7 @@ public class Person {
 
 	public void setLastName(String lastName) {
 		if(lastName.isEmpty()){
-			throw new IllegalArgumentException("No last name given");
+			throw new DomainException("No last name given");
 		}
 		this.lastName = lastName;
 	}

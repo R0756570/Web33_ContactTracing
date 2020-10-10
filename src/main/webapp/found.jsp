@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Search</title>
+    <title>Found</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -22,21 +22,17 @@
                 <li><a href="Controller?command=Register">Register</a></li>
             </ul>
         </nav>
-        <h2>Who do you want to search for ?</h2>
+        <h2>Results</h2>
 
     </header>
     <main>
-        <c:if test="${error != null}">
-            <div class="alert alert-danger" id="errore">${error}</div>
-        </c:if>
-
-        <form action="Controller?command=search" method="post" novalidate="novalidate">
-            <p>
-                <label for="userid">User id</label>
-                <input type="text" id="userid" name="userid" value="${vorigeUserId}" required ></p>
-
-            <p><input type="submit" id="search" value="search"></p>
-        </form>
+        <p id="boodschap">more information about ${person.userid} : </p>
+        <ul>
+            <li> User ID: ${person.userid}</li>
+            <li> E-mail: ${person.email}</li>
+            <li> First Name: ${person.firstName}</li>
+            <li> Last Name: ${person.lastName}</li>
+        </ul>
     </main>
     <footer> &copy; Webontwikkeling 3, UC Leuven-Limburg </footer>
 </div>

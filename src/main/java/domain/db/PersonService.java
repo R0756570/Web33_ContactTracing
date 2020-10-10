@@ -12,7 +12,12 @@ public class PersonService {
 	
 	public PersonService () {
 		Person administrator = new Person("admin", "admin@ucll.be", "t", "Ad", "Ministrator");
+		Person user = new Person("user", "user@ucll.be", "t", "Mr", "Users");
+		Person test = new Person("test", "test@ucll.be", "t", "Mr", "Test");
+
 		add(administrator);
+		add(test);
+		add(user);
 	}
 	
 	public Person get(String personId){
@@ -25,6 +30,16 @@ public class PersonService {
 	public List<Person> getAll(){
 		return new ArrayList<Person>(persons.values());	
 	}
+
+	public boolean correctLogin (String userid, String password) {
+		return (persons.containsKey(userid) && persons.get(userid).isCorrectPassword(password));
+	}
+
+	/*public Person vind(String naam,String voornaam) {
+		if (naam == null || voornaam==null || naam.trim().length()==0 || voornaam.trim().length()==0) throw new IllegalArgumentException("Gelieve alles in te vullen");
+		if(persons.containsValue(voornaam))
+		return null;
+	}*/
 
 	public void add(Person person){
 		if(person == null){

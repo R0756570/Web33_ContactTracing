@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <body>
 <div id="container">
 <header>
-<h1><span>XXX</span></h1>
+<h1><span>Contact Tracing</span></h1>
 <nav>
 <ul>
 <li><a href="Controller">Home</a></li>
@@ -23,16 +24,29 @@ User Overview
 
 </header><main>
 <table>
-<tr>
-<th>E-mail</th>
-<th>First Name</th>
-<th>Last Name</th>
-</tr>
-<tr>
-<td>jan.janssens@hotmail.com</td><td>Jan</td><td>Janssens</td>
-</tr>
+    <caption>Users Overview</caption>
+    <a href="Controller?command=searchForm">Search a person</a>
 
-<caption>Users Overview</caption>
+    <thead>
+        <tr>
+            <th>E-mail</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    <c:if test="${!empty persons}">
+        <c:forEach var="person" items="${persons}">
+            <tr>
+                <td>${person.email}</td>
+                <td>${person.firstName}</td>
+                <td>${person.lastName}</td>
+            </tr>
+        </c:forEach>
+    </c:if>
+    </tbody>
+
 </table>
 </main>
 <footer>

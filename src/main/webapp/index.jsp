@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
 	<div id="container">
 		<header>
 			<h1>
-				<span>XXX</span>
+				<span>Contact Tracing</span>
 			</h1>
 			<nav>
 				<ul>
@@ -24,12 +25,28 @@
 			<h2>Home</h2>
 
 		</header>
-		<main> Sed ut perspiciatis unde omnis iste natus error sit
-		voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
-		ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-		dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-		aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-		qui ratione voluptatem sequi nesciunt. </main>
+		<main>
+			<c:choose>
+				<c:when test="${loggedIn}">
+					<p>Welcome ${person.firstName} !</p>
+					<a href="Controller?command=logout&userId=${person.userid}">Logout</a>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${error != null}">
+						<p class="alert-danger" >${error}</p>
+					</c:if>
+					<form action="Controller?command=login" method="post" novalidate="novalidate">
+						<p>
+							<label for="userid">User id</label>
+							<input type="text" id="userid" name="userid" required ></p>
+						<p>
+							<label for="password">Password</label>
+							<input type="password" id="password"  name="password" required> </p>
+						<p><input type="submit" id="login" value="login"></p>
+					</form>
+				</c:otherwise>
+			</c:choose>
+		</main>
 		<footer> &copy; Webontwikkeling 3, UC Leuven-Limburg </footer>
 	</div>
 </body>
